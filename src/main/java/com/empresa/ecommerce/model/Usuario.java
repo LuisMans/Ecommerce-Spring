@@ -1,8 +1,8 @@
 package com.empresa.ecommerce.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.util.List;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Usuarios")
+@Table(name = "usuarios")
 public class Usuario {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
 	private String nombreUsuario;
@@ -23,4 +24,9 @@ public class Usuario {
 	private String telefono;
 	private String tipo;
 	private String contraseña;
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<Producto> productos;
+	@OneToMany(mappedBy = "usuario")
+	private List<Orden> ordenes;
 }

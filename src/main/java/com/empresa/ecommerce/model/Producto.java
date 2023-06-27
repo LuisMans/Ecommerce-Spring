@@ -1,8 +1,8 @@
 package com.empresa.ecommerce.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.util.List;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,15 +11,20 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Productos")
+@Table(name = "productos")
 public class Producto {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
 	private String descripcion;
 	private String imagen;
 	private double precio;
 	private int cantidad;
+	
+	@ManyToOne
+	private Usuario usuario;
+	
 	
 }
